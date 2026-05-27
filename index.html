@@ -302,45 +302,46 @@ main{
 }
 .qm-large.cl{ vertical-align:-4px }
 
-/* FOR — centered section with icons */
+/* FOR — persona grid */
 .for-section{ width:100%; text-align:center; padding-top:4px }
 .for-head{
-  font-size:18px; line-height:1.4; margin:0 0 16px; font-weight:500;
+  font-size:20px; line-height:1.3; margin:0 0 16px; font-weight:800; letter-spacing:.2px;
   background: linear-gradient(180deg,#ffffff,#aab0bc);
   -webkit-background-clip:text; background-clip:text; color:transparent;
 }
-.for-head b{
-  background: linear-gradient(180deg,#ffffff,#e0e4eb);
-  -webkit-background-clip:text; background-clip:text; color:transparent;
-  font-weight:800;
+.for-grid{
+  display:grid; grid-template-columns: 1fr 1fr; gap:10px;
 }
-.for-icons{
-  list-style:none; margin:0; padding:0;
-  display:flex; flex-direction:column; gap:10px;
+.persona{
+  padding:16px 12px; border-radius:14px;
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.01));
+  border:1px solid var(--line-2);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+  display:flex; flex-direction:column; align-items:center; gap:6px;
 }
-.for-icons li{
-  display:inline-flex; align-items:center; justify-content:center; gap:10px;
-  font-size:13.5px; color:#d6dae3; line-height:1.5;
-  padding:4px 0;
+.p-ico{
+  width:44px; height:44px; border-radius:50%;
+  display:grid; place-items:center;
+  background: linear-gradient(180deg, #1a1d24, #06080c);
+  border:1px solid rgba(255,255,255,.22);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 4px 12px rgba(0,0,0,.4);
+  margin-bottom:4px;
 }
-.for-icons li b{
+.p-ico svg{ width:20px; height:20px }
+.p-t{
+  font-size:14px; font-weight:800; letter-spacing:.2px;
   background: linear-gradient(180deg,#ffffff,#cfd3db);
   -webkit-background-clip:text; background-clip:text; color:transparent;
-  font-weight:800;
 }
-.for-ic{
-  width:32px; height:32px; flex:none; border-radius:50%;
-  display:grid; place-items:center;
-  background: linear-gradient(180deg,#1a1d24,#06080c);
-  border:1px solid rgba(255,255,255,.22);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
-}
-.for-ic svg{ width:16px; height:16px }
+.p-s{ font-size:11.5px; color:var(--ink-dim); line-height:1.4 }
 @media (max-width:380px){
-  .for-head{ font-size:16px }
-  .for-icons li{ font-size:12.5px; gap:8px }
-  .for-ic{ width:28px; height:28px }
-  .for-ic svg{ width:14px; height:14px }
+  .for-head{ font-size:17px }
+  .for-grid{ gap:8px }
+  .persona{ padding:14px 8px }
+  .p-ico{ width:40px; height:40px }
+  .p-ico svg{ width:18px; height:18px }
+  .p-t{ font-size:13px }
+  .p-s{ font-size:11px }
 }
 
 /* LATEST VIDEOS */
@@ -592,38 +593,40 @@ footer .disc{ color:#535a6b; font-size:10.5px; margin-top:6px; max-width:360px; 
     <span class="qm-large cl">”</span>
   </blockquote>
 
-  <!-- FOR WHOM — centered with header + icons -->
+  <!-- FOR WHOM — persona cards, minimal text -->
   <section class="for-section">
     <div class="eyebrow-line"><span>WHO IT'S FOR</span></div>
-    <h3 class="for-head">
-      이런 투자자에게 <b>꼭 추천드립니다.</b>
-    </h3>
-    <ul class="for-icons">
-      <li>
-        <span class="for-ic">
+    <h3 class="for-head">이런 투자자에게.</h3>
+    <div class="for-grid">
+      <div class="persona">
+        <div class="p-ico">
           <svg viewBox="0 0 24 24" fill="none" stroke="#ededed" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 8 12 12 15 16 9 21 13"/><path d="M3 21h18"/></svg>
-        </span>
-        <span>차트를 <b>정량적</b>으로 보고 싶은 투자자</span>
-      </li>
-      <li>
-        <span class="for-ic">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#ededed" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12c0 5-4 9-9 9s-9-4-9-9 4-9 9-9c2 0 4 .6 5.5 1.7"/><path d="M21 5v5h-5"/></svg>
-        </span>
-        <span>뉴스가 아닌 <b>흐름</b>을 읽고 싶은 투자자</span>
-      </li>
-      <li>
-        <span class="for-ic">
+        </div>
+        <div class="p-t">차트 분석가</div>
+        <div class="p-s">정량적으로 보는 투자자</div>
+      </div>
+      <div class="persona">
+        <div class="p-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#ededed" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c4-4 8 4 12 0s8 4 8 0M2 17c4-4 8 4 12 0s8 4 8 0"/></svg>
+        </div>
+        <div class="p-t">흐름 추종자</div>
+        <div class="p-s">뉴스 아닌 흐름 우선</div>
+      </div>
+      <div class="persona">
+        <div class="p-ico">
           <svg viewBox="0 0 24 24" fill="none" stroke="#ededed" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-        </span>
-        <span><b>매매 타이밍</b>이 막막한 투자자</span>
-      </li>
-      <li>
-        <span class="for-ic">
+        </div>
+        <div class="p-t">타이밍 트레이더</div>
+        <div class="p-s">진입·청산이 막막한 분</div>
+      </div>
+      <div class="persona">
+        <div class="p-ico">
           <svg viewBox="0 0 24 24" fill="none" stroke="#ededed" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
-        </span>
-        <span>매크로 흐름과 <b>코인의 연결</b>을 보는 투자자</span>
-      </li>
-    </ul>
+        </div>
+        <div class="p-t">매크로 투자자</div>
+        <div class="p-s">글로벌 연결을 본다</div>
+      </div>
+    </div>
   </section>
 
   <!-- LATEST VIDEOS — 채널 최신 영상 -->
