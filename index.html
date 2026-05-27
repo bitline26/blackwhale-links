@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+<meta name="format-detection" content="telephone=no" />
+<title>BLACKWHALE COIN — 블랙웨일코인</title>
+<meta name="description" content="비트코인 · 시장 브리핑 · 차트 인사이트 — 블랙웨일코인 공식 링크." />
+<meta property="og:title" content="BLACKWHALE COIN — 블랙웨일코인" />
+<meta property="og:description" content="시장이 움직인 뒤가 아니라 움직이기 전에 방향을 읽습니다." />
+<meta property="og:image" content="banner.png" />
+<meta property="og:type" content="website" />
+<meta name="theme-color" content="#000000" />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="apple-touch-icon" href="logo.png" />
+<style>
+:root{
+  --ink:#f3f5fa;
+  --ink-dim:#9097a6;
+  --silver-1:#ededed;
+  --silver-2:#b8bcc4;
+  --silver-3:#7a7e87;
+  --line:rgba(255,255,255,.08);
+  --line-2:rgba(255,255,255,.18);
+  --line-3:rgba(255,255,255,.28);
+  --card:rgba(255,255,255,.035);
+  --card-hover:rgba(255,255,255,.07);
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bot: env(safe-area-inset-bottom, 0px);
+}
+*{box-sizing:border-box; -webkit-tap-highlight-color: transparent}
+html,body{margin:0; padding:0}
+html{ -webkit-text-size-adjust:100% }
+body{
+  min-height:100vh; min-height:100dvh;
+  font-family:'Pretendard','SF Pro Display','Noto Sans KR',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  color:var(--ink);
+  background:#000;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+
+/* PURE BLACK COSMIC BG — only white/star tones, no blue */
+.bg{ position:fixed; inset:0; z-index:0; pointer-events:none; background:#000 }
+.bg::before{
+  content:""; position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 5%, rgba(255,255,255,.06), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 50% 100%, rgba(255,255,255,.04), transparent 60%);
+}
+/* stars */
+.bg::after{
+  content:""; position:absolute; inset:0;
+  background-image:
+    radial-gradient(1px 1px at 11% 14%, rgba(255,255,255,.7), transparent 50%),
+    radial-gradient(1px 1px at 78% 22%, rgba(255,255,255,.5), transparent 50%),
+    radial-gradient(1.5px 1.5px at 42% 38%, rgba(255,255,255,.7), transparent 50%),
+    radial-gradient(1px 1px at 90% 64%, rgba(255,255,255,.4), transparent 50%),
+    radial-gradient(1px 1px at 30% 70%, rgba(255,255,255,.5), transparent 50%),
+    radial-gradient(1px 1px at 60% 85%, rgba(255,255,255,.35), transparent 50%),
+    radial-gradient(1.5px 1.5px at 8% 50%, rgba(255,255,255,.55), transparent 50%),
+    radial-gradient(1px 1px at 55% 12%, rgba(255,255,255,.55), transparent 50%),
+    radial-gradient(1px 1px at 22% 92%, rgba(255,255,255,.4), transparent 50%),
+    radial-gradient(1px 1px at 68% 48%, rgba(255,255,255,.5), transparent 50%);
+  opacity:.95;
+}
+
+/* HERO — banner full-width, natural aspect (no crop) */
+.hero{
+  position:relative; z-index:1;
+  width:100%; margin:0 auto;
+  padding: var(--safe-top) 0 0;
+  display:flex; justify-content:center;
+}
+.hero-wrap{
+  position:relative; isolation:isolate;
+  width:100%; max-width:1200px;
+}
+.hero-img{
+  display:block; width:100%; height:auto;
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 75%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 75%, transparent 100%);
+  user-select:none; -webkit-user-drag:none;
+}
+@media (min-width:1400px){ .hero-wrap{ max-width:1100px } }
+/* mobile — full width banner, natural aspect, no crop */
+@media (max-width:600px){
+  .hero{ padding: var(--safe-top) 0 0 }
+  .hero-wrap{ max-width:100%; width:100vw; height:auto; overflow:visible }
+  .hero-img{
+    width:100vw; height:auto; max-width:none;
+    margin: 0; display:block;
+    object-fit: initial; transform:none;
+  }
+}
+
+/* SIDE COSMIC PANELS — only show on wide screens */
+.side{
+  position:fixed; top:0; bottom:0; width:18vw; max-width:380px;
+  z-index:0; pointer-events:none; opacity:.55;
+  background-size:cover; background-position:center;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 30%, #000 70%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 30%, #000 70%, transparent 100%);
+}
+.side.left{ left:0; background-image:url('bg-left.png'); -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 50%, transparent 100%); mask-image: linear-gradient(90deg, #000 0%, #000 50%, transparent 100%); }
+.side.right{ right:0; background-image:url('bg-right.png'); -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 50%, #000 100%); mask-image: linear-gradient(90deg, transparent 0%, #000 50%, #000 100%); }
+@media (max-width:880px){ .side{ display:none } }
+
+main{
+  position:relative; z-index:2;
+  max-width:480px; margin:0 auto;
+  padding: 0 20px calc(40px + var(--safe-bot));
+  display:flex; flex-direction:column; align-items:center; gap:14px;
+  margin-top: -28px;
+}
+
+/* BRAND */
+.brand{ display:flex; flex-direction:column; align-items:center; gap:10px }
+.logo{
+  width:124px; height:124px; border-radius:50%;
+  background:#000; overflow:hidden; position:relative;
+  box-shadow:
+    0 0 0 1.5px rgba(255,255,255,.45),
+    0 0 0 4px rgba(0,0,0,1),
+    0 0 0 5.5px rgba(255,255,255,.18),
+    0 22px 60px rgba(0,0,0,.85);
+}
+.logo img{ width:100%; height:100%; object-fit:cover; display:block }
+.logo::after{
+  content:""; position:absolute; inset:-30%;
+  background: conic-gradient(from 0deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.22) 25%, rgba(255,255,255,0) 50%, rgba(255,255,255,.22) 75%, rgba(255,255,255,0) 100%);
+  filter: blur(10px); opacity:.4; animation: spin 22s linear infinite;
+}
+@keyframes spin{ to{ transform:rotate(360deg) } }
+
+.name{
+  font-size:22px; font-weight:800; letter-spacing:1.5px;
+  background: linear-gradient(180deg, #ffffff 0%, #d4d8e0 40%, #8a8f9a 70%, #c8cdd7 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  text-shadow: 0 1px 0 rgba(255,255,255,.06);
+  margin-top:2px;
+}
+.name .dot{ color:var(--silver-2); margin:0 6px; font-weight:400 }
+.subtitle{
+  display:flex; align-items:center; gap:10px;
+  color:var(--silver-2); font-size:11.5px; letter-spacing:.22em;
+  text-transform:none; margin-top:2px;
+}
+.subtitle::before, .subtitle::after{
+  content:""; flex:0 0 36px; height:1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
+}
+.handle{ color:var(--silver-3); font-size:12px; letter-spacing:.3px; text-align:center }
+
+.tagline{
+  color:#dee2eb; font-size:14px; line-height:1.65; text-align:center;
+  max-width:340px; margin:8px 0 14px;
+}
+.tagline b{
+  font-weight:800;
+  background: linear-gradient(180deg,#ffffff,#a8adb6);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+
+/* LINK BUTTONS — chrome metallic */
+.links{ width:100%; display:flex; flex-direction:column; gap:11px }
+.link{
+  display:flex; align-items:center; gap:14px;
+  padding:15px 16px; border-radius:14px;
+  background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015));
+  border:1px solid var(--line-2);
+  color:var(--ink); text-decoration:none;
+  transition: transform .15s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  position:relative; overflow:hidden;
+  min-height:62px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 6px 18px rgba(0,0,0,.4);
+}
+.link::after{
+  content:""; position:absolute; left:0; right:0; top:0; height:1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
+  opacity:.6;
+}
+@media (hover:hover){
+  .link:hover{ background:var(--card-hover); border-color:var(--line-3); transform:translateY(-1px); box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 14px 36px rgba(0,0,0,.6) }
+}
+.link:active{ transform:scale(.985); background:var(--card-hover) }
+.link:focus-visible{ outline:2px solid var(--silver-2); outline-offset:2px }
+
+.link .icon{
+  width:42px; height:42px; border-radius:11px; flex:none;
+  display:grid; place-items:center;
+  background: linear-gradient(180deg, #1a1d24 0%, #06080c 100%);
+  border:1px solid rgba(255,255,255,.28);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.12), inset 0 -8px 12px rgba(0,0,0,.4);
+}
+/* brand-colored icons */
+.link[data-brand="tg"] .icon{
+  background: linear-gradient(180deg, #38b6ff 0%, #1d8ee0 100%);
+  border-color: rgba(255,255,255,.35);
+}
+.link[data-brand="yt"] .icon{
+  background: linear-gradient(180deg, #ff3a3a 0%, #cc0000 100%);
+  border-color: rgba(255,255,255,.25);
+}
+.link[data-brand="ox"] .icon{
+  background: #0a0c11;
+  border-color: rgba(255,255,255,.22);
+}
+.link .icon svg{ width:22px; height:22px }
+.link .text{ display:flex; flex-direction:column; line-height:1.25; flex:1; min-width:0 }
+.link .title{
+  font-size:15px; font-weight:700; letter-spacing:.2px;
+  background: linear-gradient(180deg,#ffffff,#cfd3db);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.link .sub{
+  font-size:12px; color:var(--ink-dim); margin-top:3px;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.link .chev{
+  color:var(--silver-2); font-size:22px; line-height:1; font-weight:300;
+  margin-right:2px;
+}
+
+/* OPEN ABOUT — no box */
+.about-open{
+  width:100%; padding:14px 4px 0; text-align:center;
+}
+.hook-q{
+  display:inline-block;
+  font-size:17px; font-weight:800; letter-spacing:.04em;
+  color:#0c0e14;
+  background: linear-gradient(180deg,#ffffff 0%, #c8ccd5 100%);
+  padding:10px 22px; border-radius:999px;
+  box-shadow: 0 10px 28px rgba(255,255,255,.10), 0 0 0 1px rgba(255,255,255,.18), inset 0 -3px 6px rgba(0,0,0,.22);
+  margin-bottom:18px;
+  position:relative;
+}
+.hook-q::after{
+  content:""; position:absolute; left:50%; bottom:-9px; transform:translateX(-50%);
+  width:0; height:0; border-left:8px solid transparent; border-right:8px solid transparent;
+  border-top:9px solid #c8ccd5;
+}
+@media (max-width:380px){ .hook-q{ font-size:15.5px; padding:9px 18px } }
+.hero-h{
+  font-size:22px; line-height:1.4; margin:0 0 10px; font-weight:600;
+  background: linear-gradient(180deg,#ffffff,#aab0bc);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.hero-h b{
+  background: linear-gradient(180deg,#ffffff,#e0e4eb);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  font-weight:800;
+}
+.hero-p{
+  margin:0; color:#cbd0dc; font-size:13.5px; line-height:1.7;
+}
+.hero-p b{
+  background: linear-gradient(180deg,#ffffff,#cfd3db);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  font-weight:700;
+}
+
+/* DO ROW — 4 icons */
+.do-row{
+  display:grid; grid-template-columns: repeat(4, 1fr); gap:8px; width:100%;
+  padding: 4px 0;
+}
+.do{ display:flex; flex-direction:column; align-items:center; gap:8px }
+.do-ico{
+  width:52px; height:52px; border-radius:50%;
+  display:grid; place-items:center;
+  background: linear-gradient(180deg, #1a1d24, #06080c);
+  border:1px solid rgba(255,255,255,.22);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 4px 14px rgba(0,0,0,.4);
+}
+.do-ico svg{ width:24px; height:24px }
+.do-lbl{
+  text-align:center; font-size:11.5px; line-height:1.35; color:var(--silver-2);
+  letter-spacing:.2px; font-weight:600;
+}
+
+/* BIG QUOTE — no box */
+.big-quote{
+  margin:6px 0 2px; padding:8px 0; text-align:center;
+  font-size:17px; line-height:1.6; font-weight:700;
+  background: linear-gradient(180deg,#ffffff,#a8adb6);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.big-quote b{ font-weight:800 }
+.qm-large{
+  font-family: Georgia, serif; font-size:36px; line-height:0;
+  color:var(--silver-3); display:inline-block; vertical-align:-14px; margin:0 4px;
+}
+.qm-large.cl{ vertical-align:-4px }
+
+/* FOR — centered section with icons */
+.for-section{ width:100%; text-align:center; padding-top:4px }
+.for-head{
+  font-size:18px; line-height:1.4; margin:0 0 16px; font-weight:500;
+  background: linear-gradient(180deg,#ffffff,#aab0bc);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.for-head b{
+  background: linear-gradient(180deg,#ffffff,#e0e4eb);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  font-weight:800;
+}
+.for-icons{
+  list-style:none; margin:0; padding:0;
+  display:flex; flex-direction:column; gap:10px;
+}
+.for-icons li{
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  font-size:13.5px; color:#d6dae3; line-height:1.5;
+  padding:4px 0;
+}
+.for-icons li b{
+  background: linear-gradient(180deg,#ffffff,#cfd3db);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  font-weight:800;
+}
+.for-ic{
+  width:32px; height:32px; flex:none; border-radius:50%;
+  display:grid; place-items:center;
+  background: linear-gradient(180deg,#1a1d24,#06080c);
+  border:1px solid rgba(255,255,255,.22);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+}
+.for-ic svg{ width:16px; height:16px }
+@media (max-width:380px){
+  .for-head{ font-size:16px }
+  .for-icons li{ font-size:12.5px; gap:8px }
+  .for-ic{ width:28px; height:28px }
+  .for-ic svg{ width:14px; height:14px }
+}
+
+/* LATEST VIDEOS */
+.latest{ width:100%; padding-top:6px }
+.vid-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:10px }
+@media (max-width:380px){ .vid-grid{ gap:8px } }
+.vid{
+  display:flex; flex-direction:column; gap:8px; text-decoration:none; color:var(--ink);
+  border-radius:12px; overflow:hidden;
+  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+  border:1px solid var(--line-2);
+  transition: transform .15s ease, border-color .2s ease, box-shadow .2s ease;
+}
+@media (hover:hover){
+  .vid:hover{ transform: translateY(-1px); border-color: var(--line-3); box-shadow: 0 8px 24px rgba(0,0,0,.4) }
+}
+.vid:active{ transform:scale(.99) }
+.vid-thumb{ position:relative; aspect-ratio:16/9; background:#0a0c11; overflow:hidden }
+.vid-thumb img{ width:100%; height:100%; object-fit:cover; display:block }
+.vid-thumb .play{
+  position:absolute; left:50%; top:50%; transform: translate(-50%,-50%);
+  width:36px; height:36px; border-radius:50%;
+  background: rgba(0,0,0,.65); color:#fff; display:grid; place-items:center;
+  font-size:13px; padding-left:3px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.6);
+}
+.vid-thumb-empty{
+  width:100%; aspect-ratio:16/9; background:linear-gradient(180deg,#10131a,#06080c);
+  display:grid; place-items:center; color:#9aa1b3; font-size:24px;
+  border-bottom:1px solid var(--line);
+}
+.vid-meta{ padding:0 12px 12px }
+.vid-title{
+  font-size:13px; font-weight:700; line-height:1.4;
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+  background: linear-gradient(180deg,#ffffff,#cfd3db);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.vid-sub{ font-size:11px; color:var(--ink-dim); margin-top:4px }
+.vid.placeholder .vid-meta{ padding:12px }
+
+/* tablet+ */
+@media (min-width:600px){
+  .hero-h{ font-size:24px }
+  .do-ico{ width:60px; height:60px }
+}
+@media (max-width:380px){
+  .hero-h{ font-size:19px }
+  .hero-p{ font-size:13px }
+  .do-ico{ width:46px; height:46px }
+  .do-ico svg{ width:22px; height:22px }
+  .do-lbl{ font-size:11px }
+  .big-quote{ font-size:15.5px }
+  .for-min li{ font-size:12.5px }
+  .hook-q{ font-size:12.5px; padding:5px 12px }
+  .vid-title{ font-size:12.5px }
+  .vid-meta{ padding:0 10px 10px }
+}
+.about h2{
+  font-size:11px; letter-spacing:.28em; text-transform:uppercase;
+  color:var(--silver-2); margin:0 0 10px;
+}
+.about p{ margin:0; color:#cbcfd8; font-size:13.5px; line-height:1.65 }
+.about p b{
+  background: linear-gradient(180deg,#ffffff,#b9bdc6);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.divider{ height:1px; background:linear-gradient(90deg,transparent,var(--line-2),transparent); margin:12px 0 }
+.chips{ display:flex; flex-wrap:wrap; gap:6px }
+.chip{
+  font-size:11.5px; color:var(--silver-2);
+  border:1px solid var(--line-2); padding:5px 10px; border-radius:999px;
+  background:rgba(255,255,255,.025);
+}
+
+footer{ margin-top:18px; text-align:center; color:#6f7587; font-size:11.5px; letter-spacing:.4px }
+footer .disc{ color:#535a6b; font-size:10.5px; margin-top:6px; max-width:360px; line-height:1.5 }
+
+.copy{
+  display:inline-flex; align-items:center; gap:6px; color:var(--silver-2); font-size:11.5px;
+  background:rgba(255,255,255,.04); border:1px solid var(--line-2);
+  padding:8px 14px; border-radius:999px; cursor:pointer; user-select:none;
+  transition: background .2s ease, color .2s ease;
+  min-height:36px;
+}
+.copy:active{ background:rgba(255,255,255,.10); color:#fff }
+
+/* mobile-first responsive */
+@media (max-width:480px){
+  main{ gap:12px; padding:0 18px calc(36px + var(--safe-bot)) }
+  .handle{ font-size:11.5px }
+  .tagline{ font-size:13.5px; margin:2px 0 8px }
+  .link{ padding:13px 14px; min-height:56px; border-radius:13px }
+  .link .icon{ width:38px; height:38px; border-radius:10px }
+  .link .icon svg{ width:20px; height:20px }
+  .link .title{ font-size:14.5px }
+  .link .sub{ font-size:11.5px }
+  .about p{ font-size:13px }
+}
+@media (max-width:380px){
+  main{ margin-top:-16px; gap:10px; padding:0 14px calc(28px + var(--safe-bot)) }
+  .hook-q{ font-size:15px; padding:8px 16px; margin-bottom:14px }
+  .hero-h{ font-size:18px; margin-bottom:6px }
+  .hero-p{ font-size:12.5px; line-height:1.6 }
+  .do-row{ gap:6px }
+  .do-ico{ width:44px; height:44px }
+  .do-ico svg{ width:20px; height:20px }
+  .do-lbl{ font-size:10.5px }
+  .big-quote{ font-size:14.5px; padding:4px 0 }
+  .qm-large{ font-size:28px }
+  .for-head{ font-size:15px }
+  .for-icons{ gap:8px }
+  .for-icons li{ font-size:12px; gap:8px }
+  .for-ic{ width:26px; height:26px }
+  .for-ic svg{ width:13px; height:13px }
+  .vid-grid{ gap:7px }
+  .link{ padding:12px 13px; min-height:54px }
+  .link .title{ font-size:13.5px }
+  .link .sub{ font-size:11px }
+}
+@media (min-width:600px){
+  main{ margin-top:-40px }
+  .tagline{ font-size:15px }
+}
+/* very small screens (iPhone SE etc.) */
+@media (max-width:340px){
+  main{ padding:0 12px 24px; gap:9px }
+  .link{ padding:11px 12px; min-height:50px; gap:10px }
+  .link .icon{ width:34px; height:34px }
+  .link .icon svg{ width:18px; height:18px }
+  .link .title{ font-size:13px }
+  .link .sub{ font-size:10.5px }
+  .hook-q{ font-size:14px }
+  .hero-h{ font-size:17px }
+  .do-ico{ width:42px; height:42px }
+  .do-lbl{ font-size:10px }
+  .big-quote{ font-size:13.5px }
+  .for-head{ font-size:14px }
+  .for-icons li{ font-size:11.5px }
+}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="side left" aria-hidden="true"></div>
+<div class="side right" aria-hidden="true"></div>
+
+<section class="hero" aria-hidden="true">
+  <div class="hero-wrap">
+    <img class="hero-img" src="banner.png" alt="" loading="eager" />
+  </div>
+</section>
+
+<main>
+  <div class="handle">@블랙웨일코인 · 디지털 자산 분석 브랜드</div>
+
+  <p class="tagline">
+    시장이 움직인 <b>뒤가 아니라</b><br/>
+    움직이기 <b>전에</b> 방향을 읽습니다.
+  </p>
+
+  <nav class="links" aria-label="공식 채널 링크">
+    <a class="link" data-brand="tg" href="https://t.me/+Vw7NqFNJW7M0NDZl" target="_blank" rel="noopener">
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21.2 4.3 2.7 11.5c-1 .4-1 1.8 0 2.1l4.7 1.6 1.8 5.7c.3.9 1.4 1.1 2 .4l2.7-2.8 4.6 3.4c.8.6 2 .2 2.2-.8l3.2-15c.2-1-.8-1.8-1.7-1.4Zm-4.6 4-7.4 6.6-.3 3.3-1.4-4.3 9.1-5.6Z"/>
+        </svg>
+      </span>
+      <span class="text">
+        <span class="title">텔레그램 정보방 입장</span>
+        <span class="sub">실시간 시그널 · 시장 브리핑</span>
+      </span>
+      <span class="chev" aria-hidden="true">›</span>
+    </a>
+
+    <a class="link" data-brand="ox" href="https://www.orangex.com/register?i=krno1" target="_blank" rel="noopener">
+      <span class="icon" aria-hidden="true">
+        <img src="orangex.png" alt="" style="width:24px;height:24px;object-fit:contain" />
+      </span>
+      <span class="text">
+        <span class="title">OrangeX 거래소 가입</span>
+        <span class="sub">전용 가입 링크 · 수수료 혜택</span>
+      </span>
+      <span class="chev" aria-hidden="true">›</span>
+    </a>
+
+    <a class="link" data-brand="yt" href="https://www.youtube.com/@%EB%B8%94%EB%9E%99%EC%9B%A8%EC%9D%BC%EC%BD%94%EC%9D%B8" target="_blank" rel="noopener">
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+          <path d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 4 12 4 12 4s-7.5 0-9.4.4A3 3 0 0 0 .5 6.5C0 8.5 0 12 0 12s0 3.5.5 5.5a3 3 0 0 0 2.1 2.1C4.5 20 12 20 12 20s7.5 0 9.4-.4a3 3 0 0 0 2.1-2.1c.5-2 .5-5.5.5-5.5s0-3.5-.5-5.5ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/>
+        </svg>
+      </span>
+      <span class="text">
+        <span class="title">유튜브 채널 구독</span>
+        <span class="sub">매일 BTC · 알트 시장 분석</span>
+      </span>
+      <span class="chev" aria-hidden="true">›</span>
+    </a>
+  </nav>
+
+  <!-- HOOK — 한 줄 궁금증 유발 -->
+  <section class="about-open">
+    <div class="hook-q">블랙웨일 코인은?</div>
+    <h3 class="hero-h">
+      <b>큰 흐름을 먼저 읽고</b><br/>
+      방향을 찾는 분석 브랜드.
+    </h3>
+    <p class="hero-p">
+      비트코인·알트코인 시장의 <b>차트와 신호</b>를 분석해<br/>
+      복잡한 정보를 <b>쉽고 빠르게</b> 전달합니다.
+    </p>
+  </section>
+
+  <!-- WHAT WE DO — icon row, minimal text -->
+  <section class="do-row">
+    <div class="do">
+      <div class="do-ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#ededed" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 8c1.2-1.8 4-1.7 5 0 1 1.8-1 3-2.5 3 1.6 0 3.5 1.2 2.5 3-1 1.7-3.8 1.8-5 0"/></svg>
+      </div>
+      <div class="do-lbl">BTC<br/>분석</div>
+    </div>
+    <div class="do">
+      <div class="do-ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#ededed" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 8 12 12 15 16 9 21 13"/><path d="M3 21h18"/></svg>
+      </div>
+      <div class="do-lbl">알트<br/>전망</div>
+    </div>
+    <div class="do">
+      <div class="do-ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#ededed" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 14v3M11 10v7M15 7v10M19 11v6"/></svg>
+      </div>
+      <div class="do-lbl">차트<br/>전략</div>
+    </div>
+    <div class="do">
+      <div class="do-ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#ededed" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+      </div>
+      <div class="do-lbl">매크로<br/>브리핑</div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <blockquote class="big-quote">
+    <span class="qm-large">“</span>
+    <span>시장이 움직인 <b>뒤가 아니라</b>,<br/>움직이기 <b>전에</b> 읽습니다.</span>
+    <span class="qm-large cl">”</span>
+  </blockquote>
+
+  <!-- FOR WHOM — centered with header + icons -->
+  <section class="for-section">
+    <div class="eyebrow-line"><span>WHO IT'S FOR</span></div>
+    <h3 class="for-head">
+      이런 투자자에게 <b>꼭 추천드립니다.</b>
+    </h3>
+    <ul class="for-icons">
+      <li>
+        <span class="for-ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#ededed" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 8 12 12 15 16 9 21 13"/><path d="M3 21h18"/></svg>
+        </span>
+        <span>차트를 <b>정량적</b>으로 보고 싶은 투자자</span>
+      </li>
+      <li>
+        <span class="for-ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#ededed" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12c0 5-4 9-9 9s-9-4-9-9 4-9 9-9c2 0 4 .6 5.5 1.7"/><path d="M21 5v5h-5"/></svg>
+        </span>
+        <span>뉴스가 아닌 <b>흐름</b>을 읽고 싶은 투자자</span>
+      </li>
+      <li>
+        <span class="for-ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#ededed" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </span>
+        <span><b>매매 타이밍</b>이 막막한 투자자</span>
+      </li>
+      <li>
+        <span class="for-ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#ededed" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+        </span>
+        <span>매크로 흐름과 <b>코인의 연결</b>을 보는 투자자</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- LATEST VIDEOS — 채널 최신 영상 -->
+  <section class="latest">
+    <div class="eyebrow-line"><span>최신 영상</span></div>
+    <div class="vid-grid" id="vidGrid"></div>
+  </section>
+
+  <script>
+  // 영상 ID 4개 채우면 됨. (RSS 자동 로드 시도 후 실패 시 fallback 사용)
+  (function(){
+    // BLACKWHALE COIN 채널 최신 4개 (실제 채널에서 추출)
+    var FALLBACK = [
+      { id: 'v_Gg7Lqc1d8' },
+      { id: '5umfszzAgLo' },
+      { id: 'Plr-K28MbBk' },
+      { id: 'YqFybY23Dbw' },
+    ];
+    var grid = document.getElementById('vidGrid');
+    if(!grid) return;
+    function render(list){
+      grid.innerHTML = list.slice(0,4).map(function(v){
+        return '<a class="vid" href="https://www.youtube.com/watch?v='+v.id+'" target="_blank" rel="noopener">'
+             + '<div class="vid-thumb"><img src="https://img.youtube.com/vi/'+v.id+'/hqdefault.jpg" alt="" loading="lazy" onerror="this.src=\'https://img.youtube.com/vi/'+v.id+'/mqdefault.jpg\'"/><div class="play">▶</div></div>'
+             + '</a>';
+      }).join('');
+    }
+    render(FALLBACK);
+  })();
+  </script>
+
+  <footer>
+    <div class="disc">© BLACKWHALE COIN · 본 페이지는 투자 권유가 아닌 정보 제공 목적입니다.</div>
+  </footer>
+</main>
+</body>
+</html>
