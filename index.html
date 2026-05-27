@@ -252,10 +252,23 @@ main{
 @media (max-width:380px){ .hook-q{ font-size:15.5px; padding:9px 18px } }
 .hero-h{
   font-size:26px; line-height:1.35; margin:0 0 10px; font-weight:700;
-  color:#ffffff;
   letter-spacing:.2px;
+  color:#ffffff;
+  text-shadow: 0 0 18px rgba(255,255,255,.15), 0 0 2px rgba(255,255,255,.1);
 }
-.hero-h b{ color:#ffffff; font-weight:900 }
+.hero-h b{
+  font-weight:900;
+  background: linear-gradient(100deg, #ffffff 0%, #c8ccd5 40%, #ffffff 50%, #c8ccd5 60%, #ffffff 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 6s ease-in-out infinite;
+}
+@keyframes shimmer{
+  0%   { background-position: 200% 0 }
+  50%  { background-position:   0% 0 }
+  100% { background-position:-200% 0 }
+}
 .hero-p{
   margin:0; color:#dadfe9; font-size:14px; line-height:1.65;
 }
@@ -289,8 +302,16 @@ main{
   margin:6px 0 2px; padding:8px 0; text-align:center;
   font-size:18px; line-height:1.55; font-weight:700;
   color:#ffffff;
+  text-shadow: 0 0 14px rgba(255,255,255,.12);
 }
-.big-quote b{ font-weight:900; color:#ffffff }
+.big-quote b{
+  font-weight:900;
+  background: linear-gradient(100deg, #ffffff 0%, #b9c0cc 40%, #ffffff 50%, #b9c0cc 60%, #ffffff 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 7s ease-in-out infinite;
+}
 .qm-large{
   font-family: Georgia, serif; font-size:36px; line-height:0;
   color:#9aa1b3; display:inline-block; vertical-align:-14px; margin:0 4px;
@@ -302,8 +323,13 @@ main{
 .for-section{ width:100%; text-align:center; padding-top:4px }
 .for-head{
   font-size:20px; line-height:1.3; margin:0 0 16px; font-weight:800; letter-spacing:.2px;
-  background: linear-gradient(180deg,#ffffff,#aab0bc);
+  color:#ffffff;
+  text-shadow: 0 0 14px rgba(255,255,255,.12);
+  background: linear-gradient(100deg, #ffffff 0%, #c8ccd5 45%, #ffffff 55%, #c8ccd5 65%, #ffffff 100%);
+  background-size: 200% 100%;
   -webkit-background-clip:text; background-clip:text; color:transparent;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 8s ease-in-out infinite;
 }
 .for-grid{
   display:grid; grid-template-columns: 1fr 1fr; gap:10px;
